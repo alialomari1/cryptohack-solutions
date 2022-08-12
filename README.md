@@ -1,1 +1,1 @@
-# cryptohack-solutions
+SPOILERS
