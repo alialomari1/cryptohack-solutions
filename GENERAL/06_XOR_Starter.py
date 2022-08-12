@@ -1,1 +1,1 @@
-print('FLAG:', 'crypto{%s}' % ''.join(chr(i^13) for i in b'label'))
+print('crypto{%s}' % ''.join(chr(i^13) for i in b'label'))
