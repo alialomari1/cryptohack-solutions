@@ -2,6 +2,7 @@ from pwn import remote
 from json import loads, dumps
 from base64 import b64decode
 from codecs import encode
+
 io = remote('socket.cryptohack.org', 13377)
 while True:
     enc = loads(io.recvline().decode())
