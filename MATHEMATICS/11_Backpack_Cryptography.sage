@@ -11,9 +11,9 @@ for i in range(n):
 b.append([1 / 2 for _ in range(n)] + [N * enc])
 for e in matrix(QQ, b).LLL():
     try:
-        msg = 0
+        flag = 0
         for i in range(len(e) - 1):
-            msg |= int(1 - (e[i] + (1 / 2))) << i
-        print(bytes.fromhex(hex(msg)[2:]).decode())
+            flag |= int(1 - (e[i] + (1 / 2))) << i
+        print(bytes.fromhex(hex(flag)[2:]).decode())
     except:
         continue
