@@ -1,4 +1,3 @@
-from Crypto.Util.number import long_to_bytes
 from sympy.ntheory.modular import crt
 from itertools import combinations
 from gmpy2 import iroot
