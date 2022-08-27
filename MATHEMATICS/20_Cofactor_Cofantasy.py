@@ -7,7 +7,7 @@ def get_bit(i):
     for _ in range(2):
         io.sendline(dumps({'option': 'get_bit', 'i': str(i)}).encode())
         res = int(loads(io.recvline())['bit'], 16)
-        if not pow(g, phi//(2**e), b) == pow(res, phi//(2**e), b):
+        if pow(g, phi//(2**e), b) != pow(res, phi//(2**e), b):
             return '0'
     return '1'
 
