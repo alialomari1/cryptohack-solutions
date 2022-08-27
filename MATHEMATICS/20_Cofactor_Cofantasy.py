@@ -3,7 +3,7 @@ from json import loads, dumps
 from os import system
 from math import gcd
 
-def get_bit(i):
+def determine(i):
     for _ in range(2):
         io.sendline(dumps({'option': 'get_bit', 'i': str(i)}).encode())
         res = int(loads(io.recvline())['bit'], 16)
@@ -23,9 +23,8 @@ io.recvline()
 flag_bin = ''
 flag = ''
 for i in range(43*8):
-    flag_bin += get_bit(i)
+    flag_bin += determine(i)
     if (i+1) % 8 == 0:
-        print(flag_bin)
         flag = bytes.fromhex(hex(int(flag_bin[::-1], 2))[2:])[::-1]
     system("clear")
     print(flag_bin)
