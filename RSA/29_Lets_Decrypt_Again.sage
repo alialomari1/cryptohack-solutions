@@ -2,7 +2,7 @@ from pkcs1 import emsa_pkcs1_v15
 from json import loads, dumps
 from pwn import remote, xor
 
-def get_share(msg, idx):
+def solve(msg, idx):
     digest = int(bytes.hex(emsa_pkcs1_v15.encode((msg+suffix).encode(), 768 // 8)), 16)
     e = discrete_log(Mod(digest, n), Mod(s, n))
     io.sendline(dumps({'option':'claim', 'msg': msg + suffix, 'e':hex(e), 'index':int(idx)}).encode())
@@ -16,7 +16,7 @@ io.recvline()
 io.sendline(dumps({'option': 'set_pubkey', 'pubkey': hex(n)}).encode())
 suffix = loads(io.recvline())['suffix']
 
-s1 = bytes.fromhex(get_share('This is a test for a fake signature.', 0))
-s2 = bytes.fromhex(get_share('My name is kenny and I own CryptoHack.org', 1))
-s3 = bytes.fromhex(get_share('Please send all my money to 1BoatSLRHtKNngkdXEeobR76b53LETtpyT', 2))
+s1 = bytes.fromhex(solve('This is a test for a fake signature.', 0))
+s2 = bytes.fromhex(solve('My name is kenny and I own CryptoHack.org', 1))
+s3 = bytes.fromhex(solve('Please send all my money to 1BoatSLRHtKNngkdXEeobR76b53LETtpyT', 2))
 print(xor(xor(s1, s2), s3).decode())
