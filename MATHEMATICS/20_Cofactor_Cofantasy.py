@@ -17,7 +17,7 @@ g = 986762276114520220801525811758560961667498483061127810099097
 e = 16
 b = gcd(N, pow(g, phi//(2**e), N) - 1)
 
-io = remote("socket.cryptohack.org", 13398)
+io = remote('socket.cryptohack.org', 13398)
 io.recvline()
 
 flag_bin = ''
@@ -26,6 +26,6 @@ for i in range(43*8):
     flag_bin += determine(i)
     if (i+1) % 8 == 0:
         flag = bytes.fromhex(hex(int(flag_bin[::-1], 2))[2:])[::-1]
-    system("clear")
+    system('clear')
     print(flag_bin)
     print(flag)
